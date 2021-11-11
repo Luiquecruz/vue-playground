@@ -1,9 +1,7 @@
 <template>
   <div
     id="app"
-    :class="
-      typeof data.main != 'undefined' && data.main.temp > 18 ? 'warm' : ''
-    "
+    :class="typeof data.main !== 'undefined' && data.main.temp > 18 ? 'warm' : ''"
   >
     <main>
       <div class="search-box">
@@ -44,7 +42,7 @@ export default {
   },
   methods: {
     fetchWeather(e) {
-      if (e.key == "Enter") {
+      if (e.key === "Enter") {
         fetch(
           `${this.url_base}?q=${this.query}&units=metric&appid=${this.api_key}`
         )
@@ -178,7 +176,7 @@ main {
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
-  margin: 30px 0px;
+  margin: 30px 0;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 
