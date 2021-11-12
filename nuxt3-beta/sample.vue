@@ -4,12 +4,34 @@
     <input :value="count" disabled>
     <button @click="count++"> + </button>
   </form>
+
+  <pre>
+    {{data}}
+  </pre>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
-const count = ref(0);
+  import { ref } from 'vue';
+  import { useAsyncData } from '#app';
+
+  // testing Vue 3 stuff
+  const count = ref(0);
+
+  // useFetch Hook
+  // const { data }: {data: any} = await useFetch("/api/tvmaze?search=batman");
+
+  // useAsyncData Hook
+  const { data }: {data: any} = await useAsyncData(
+    "searchData",
+    () => $fetch("../api/tvmaze?search=predator")
+  );
 </script>
+
+<!--<script>-->
+<!--  export default {-->
+<!--    layout: 'restrict'-->
+<!--  };-->
+<!--</script>-->
 
 <style lang="scss">
 * {

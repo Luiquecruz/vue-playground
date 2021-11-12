@@ -4,7 +4,9 @@
     restrict header
   </header>
 
-  <slot />
+  <main class="layout-restrict">
+    <slot />
+  </main>
 
   <footer>
     restrict footer
@@ -15,6 +17,6 @@
 
 </script>
 
-<style scoped>
-
+<style lang="scss">
+@import "./assets/scss/main";
 </style>

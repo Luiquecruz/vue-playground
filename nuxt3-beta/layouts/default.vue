@@ -4,7 +4,9 @@
     header
   </header>
 
-  <slot />
+  <main class="layout-default">
+    <slot />
+  </main>
 
   <footer>
     footer
@@ -15,6 +17,6 @@
 
 </script>
 
-<style scoped>
-
+<style lang="scss">
+@import "./assets/scss/main";
 </style>
