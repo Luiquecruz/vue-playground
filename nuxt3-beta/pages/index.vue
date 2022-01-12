@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <form @submit.prevent="searchData">
       <input type="text" v-model="searchText" />
 
@@ -20,12 +20,15 @@
             :src="item.show?.image?.medium"
             :alt="item"
           />
+
           <p>
             {{ item.show?.name }}
           </p>
+
           <span>
             Score: {{ item.score }}
           </span>
+
           <div
             v-html="item.show?.summary"
             class="summary"
@@ -37,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const searchText = ref('');
 const showsData = ref([]) as any;
@@ -45,8 +48,6 @@ const showsData = ref([]) as any;
 async function searchData() {
   const data = await fetch(`/api/tvmaze?search=${searchText.value}`);
   showsData.value = await data.json();
-
-  console.log(showsData.value)
 }
 </script>
 

@@ -1,39 +1,4 @@
-// variables
-$colors: (
-  primary: (
-    dark: #1b2023,
-    default: #2f3640,
-    light: #353b48,
-  ),
-  secondary: (
-    dark: #c79f34,
-    default: #fbc531,
-    light: #fcd35d,
-  ),
-  text: (
-    light: #f5f6fa,
-    dark: #2f3640,
-  ),
-);
-
-// reset
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-// settings
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-size: 1rem;
-  color: map-get($colors, text, dark);
-}
+@import "reset";
+@import "variables";
+@import "settings";
+@import "helpers";
