@@ -1,0 +1,11 @@
+@import "tailwind.css";
+
+@import "label.css";
+@import "input.css";
+@import "button.css";
+
+html,
+body,
+#app {
+  @apply overflow-x-hidden w-full h-screen antialiased text-gray-50 bg-gray-800;
+}

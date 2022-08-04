@@ -1,0 +1,7 @@
+.label {
+  @apply flex flex-col mb-6 text-xl text-center;
+}
+
+.label > input {
+  @apply mt-3;
+}
