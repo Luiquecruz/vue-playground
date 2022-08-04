@@ -1,0 +1,73 @@
+:root {
+  --bg: #212121;
+  --fg: #f2f2f2;
+  --button: #216dac;
+}
+
+html {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  color: var(--fg);
+  background: var(--bg);
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+button {
+  box-shadow: none;
+  border: none;
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  background: var(--button);
+  color: var(--fg);
+  padding: 1rem 1.6rem;
+  transition: 200ms;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  display: block;
+  line-height: 1.5;
+  max-width: 1140px;
+  width: 100%;
+  padding: 0 3rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 560px) {
+  html {
+    font-size: 8.5px;
+  }
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 9px;
+  }
+}
