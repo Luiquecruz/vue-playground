@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Preparation Guide</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d53a19eb-ed0f-4335-82e9-299e783ee98b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🪡</span></div><h1 class="page-title">Preparation Guide</h1></header><div class="page-body"><p id="9ff57b8f-28fd-40a5-a53b-aff78c50892d" class="">Are you excited to jump into Vue.js Forge? We are too! 🔥 But before the day of the event there are a few things you could take care of in order to have a smoother kickstart.</p><p id="377cbc06-85ee-4ead-bacc-6280b53651b0" class="">During the event, you will be coding on your computer so we recommend that you complete the following items ASAP so you have time to troubleshoot if anything goes wrong. The full setup should take between <strong>20 to 30 minutes</strong>.</p><h1 id="fd8ab4a8-d6ee-40be-8490-23129d4e92e3" class="">0. Add the event to your calendar</h1><p id="b5db0efa-ca7d-46d6-b4cb-21df4d655b40" class="">Vue.js Forge is an international event and can be easy to get confused with the time zones and starting time. To help you get there from the beginning we made the following link to add it to your calendar of preference.</p><p id="bcb99562-54c3-4649-be44-358907cd1c0c" class=""> </p><p id="8eedee5c-7221-4719-9ce3-5b88a34be3f5" class="">📅 <a href="https://www.addevent.com/event/vb14459089">Add the event to your calendar</a></p><h1 id="4a3e3de9-63ef-4430-98f3-07d45b030a0b" class="">1. Grab the Boilerplate Code</h1><ol type="1" id="83ae0cc6-1ee1-4af8-8b74-828754c80119" class="numbered-list" start="1"><li>The official repo for the event is <a href="https://github.com/vueschool/vuejs-forge-episode-2-the-project">vueschool/vuejs-forge-episode-2-the-project</a></li></ol><ol type="1" id="46b3776e-4d71-4164-b9f4-7110a2f1605e" class="numbered-list" start="2"><li>You should clone it to your local machine from github<p id="c70527fc-1ec5-45d2-9dfe-c305355e577f" class="">Run <code>git clone </code><code><a href="https://github.com/vueschool/vuejs-forge-episode-2-the-project">https://github.com/vueschool/vuejs-forge-episode-2-the-project</a></code> or check the <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">instructions for cloning a repo if needed</a>.</p></li></ol><ol type="1" id="9512189b-31d9-4e48-995f-1b5a9377dc7d" class="numbered-list" start="3"><li>To run the project you should have the current <a href="https://nodejs.org/en/">LTS version of node</a> installed on your machine (v16.17.0). You can check the installed node version by running <code>node -v</code> in your terminal. </li></ol><ol type="1" id="f4031b3b-4223-45b7-8167-33ea0b232504" class="numbered-list" start="4"><li>Navigate to the directory in your terminal and run <code>npm install</code></li></ol><ol type="1" id="195ff2ed-eeb2-401c-9128-5cbd4240690b" class="numbered-list" start="5"><li>During the event we’ll start working from the main branch.</li></ol><ol type="1" id="5d014d65-cacf-41cc-bdde-f25a6df14ff1" class="numbered-list" start="6"><li>Before you start up the project you must provide the following environment variables:<ol type="a" id="ebe69546-846d-4266-8c7c-7949f3d00a78" class="numbered-list" start="1"><li><code>NUXT_CONTENTFUL_SPACE</code></li></ol><ol type="a" id="ec232021-f8e6-4832-8fcc-171d63f56a83" class="numbered-list" start="2"><li><code>NUXT_CONTENTFUL_PUBLIC_ACCESS_TOKEN</code></li></ol><ol type="a" id="495e3a76-4bc4-4b14-ada0-de6d25221933" class="numbered-list" start="3"><li><code>NUXT_DESKREE_BASE_URL</code></li></ol><ol type="a" id="b8260613-7b72-49d5-9c06-1eb31f6b3d29" class="numbered-list" start="4"><li><code>STRIPE_SECRET</code></li></ol><ul id="f602b81b-1a05-4d56-9da2-61ba818bedfc" class="bulleted-list"><li style="list-style-type:disc">These exist with empty or default values in <code>.env.example</code>. You can rename the <code>.env.example</code> file to <code>.env</code> and then we’ll show you how to get these values in the steps below.</li></ul></li></ol><h1 id="111d96fc-017a-4c79-9082-90d16687e412" class="">2. Get Setup with Deskree</h1><ol type="1" id="230fa96b-4b86-495a-be3c-bc6ccbbcbe3b" class="numbered-list" start="1"><li><a href="https://www.deskree.studio?utm_source=vuejsforge&amp;utm_medium=referral&amp;utm_campaign=sponsorship">Sign-up for an account on deskree.studio</a></li></ol><ol type="1" id="47c707a0-e4ea-43c8-8815-51b621f23c98" class="numbered-list" start="2"><li>Create a New Project</li></ol><figure id="3b63d026-8177-47c1-b431-799c96c75a51" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.31.15_PM.png"><img style="width:1918px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.31.15_PM.png"/></a></figure><ol type="1" id="cacc9248-b7a6-4470-988b-73970633cd1e" class="numbered-list" start="3"><li>This will launch a wizard to start the new project. Fill the first step as you see fit. Take the project id you added here and use it in the project .env like so:</li></ol><pre id="0f275b39-afaf-440f-9595-a411d6bd8d2d" class="code"><code>NUXT_DESKREE_BASE_URL=&quot;https://[project-id-here].api.deskree.com/api/v1&quot;</code></pre><figure id="285f7bd9-1778-478b-b595-4174657c4f05" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.35.24_PM.png"><img style="width:2554px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.35.24_PM.png"/></a></figure><ol type="1" id="c92a0e19-92a3-4c2c-b69a-c6596452089e" class="numbered-list" start="4"><li>Next, you can choose the tier of your choice. The Free starter tier will be plenty for the event</li></ol><figure id="dc0f8e2b-6e16-49b4-b3fc-664a41e09228" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.35.57_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.35.57_PM.png"/></a></figure><ol type="1" id="f204284d-8e8d-4f98-9998-77684679fea9" class="numbered-list" start="5"><li>The next step requires no info to input. Only take notice of the services provided with your account. </li></ol><figure id="453cb480-d51d-4497-90da-e7e3e89401a2" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.37.18_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.37.18_PM.png"/></a></figure><ol type="1" id="f8b3d840-1d2f-4d43-8392-db356f693eb4" class="numbered-list" start="6"><li>Next, you should setup the database tables we’ll need for the project. <ol type="a" id="e85da2af-4fa1-482e-abf2-7ac4c81a7403" class="numbered-list" start="1"><li>Table 1: <code>carts</code><ul id="b63b27fd-9b4b-4937-8582-2ea586c6683a" class="bulleted-list"><li style="list-style-type:disc">all the default columns plus:</li></ul><ul id="ca9ad203-f6a3-47f0-9d9c-ac2fd948d6d9" class="bulleted-list"><li style="list-style-type:disc"><code>products</code> (string) (required)</li></ul></li></ol><ol type="a" id="22fe9c52-d8b5-4ff4-ae57-da0964a32996" class="numbered-list" start="2"><li>Table 2: <code>reviews</code><ul id="e3173391-1824-43c1-9cf3-54d1604d9ddc" class="bulleted-list"><li style="list-style-type:disc">all the default columns plus:</li></ul><ul id="3aa6ebee-9f72-4ec1-b837-a227cd0a4256" class="bulleted-list"><li style="list-style-type:disc"><code>product_id</code> (string) (required)</li></ul><ul id="3aacd92c-613a-454b-96e5-b228bfdde074" class="bulleted-list"><li style="list-style-type:disc"><code>rating</code> (integer) (required)</li></ul><ul id="00c90f22-a357-4834-a132-47301c88ca47" class="bulleted-list"><li style="list-style-type:disc"><code>text</code> (string) (required)</li></ul><ul id="e80b267d-7f60-4a37-af54-f66fa6c1e734" class="bulleted-list"><li style="list-style-type:disc"><code>title</code> (string) (required)</li></ul></li></ol><ol type="a" id="71690455-cb0e-4027-a6f4-5050b3072a98" class="numbered-list" start="3"><li>A users table comes with every new project but you should add a <code>cartId</code> column to it like this:<ul id="e4d18331-a0a5-4fa3-b661-4c097a2e3675" class="bulleted-list"><li style="list-style-type:disc"><code>cartId</code> (One-to-One Reference) (carts) (NOT required)</li></ul></li></ol></li></ol><figure id="8a87ea46-4598-46c7-a8c1-9da4ed7b7567" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.50.06_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.50.06_PM.png"/></a></figure><ol type="1" id="94560141-565d-4390-afe7-01dd3424aa70" class="numbered-list" start="7"><li>Next, select email/password for the login type. You can add other login types later if you’d like but we’ll just use email/password during the event. </li></ol><figure id="8ad9249d-a20a-4388-8fe9-27b8900172ed" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.54.09_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.54.09_PM.png"/></a></figure><ol type="1" id="b73550fe-6ce7-4d9c-b5ca-7e1aaf771c49" class="numbered-list" start="8"><li>Next, you can skip the roles. We won’t need any for this event but for other projects they provide a simple/flexible way to limit access to data.</li></ol><figure id="a5367425-323d-463f-90d0-a59ba4967df1" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.56.26_PM.png"><img style="width:2558px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.56.26_PM.png"/></a></figure><ol type="1" id="734332d6-4832-4cb1-a260-2ef77c3c4676" class="numbered-list" start="9"><li>Finally, you can skip adding any Deskree integrations.</li></ol><figure id="ce5f4966-be23-468c-a952-15b42d18c9df" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.56.58_PM.png"><img style="width:2556px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.56.58_PM.png"/></a></figure><ol type="1" id="fef85e3d-c57f-4824-ac3e-4ffbcc17f97e" class="numbered-list" start="10"><li>After this the project setup is complete, you can continue to the project dasboard</li></ol><figure id="fcae11eb-42d4-448e-964f-1299a4944658" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.57.51_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.57.51_PM.png"/></a></figure><ol type="1" id="7286bc7b-a11a-428a-aaa4-92e22e7c647b" class="numbered-list" start="11"><li>After you visit the project dashboard, it may take ~10 mins or so for Deskree to finish bootstrapping things under the hood. That’s it for now though. During the event we’ll use Deskree to provide login/logout functionality and to persist app data to the cloud. You can close out Deskree and continue on with the rest of the setup steps.</li></ol><figure id="bad9c998-dc9e-4895-a7eb-6d6306c5597f" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.59.08_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_8.59.08_PM.png"/></a></figure><h1 id="3e248413-771d-4be6-b166-635fa6a65375" class="">3. Get Setup with Contentful</h1><ol type="1" id="b6b255cb-d921-4b4f-9365-ea4b0cad1ba6" class="numbered-list" start="1"><li><a href="https://www.contentful.com?utm_medium=dev-event&amp;utm_source=event&amp;utm_campaign=vue-js-forge-2022&amp;utm_content=vuejs-forge-conference">Create an account at contentful.com</a> (use the signup free button in the top right)</li></ol><figure id="6577980e-c9d7-41dc-beb9-17045be8f768" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.04.22_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.04.22_PM.png"/></a></figure><ol type="1" id="0614453f-736e-49a4-bb1d-6fed4e1c7c31" class="numbered-list" start="2"><li>Under <code>Settings &gt; API Keys</code> add a new API Key.</li></ol><figure id="f0f4d32d-57bc-41b9-8890-39ada58a7f8d" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-23_at_9.07.28_AM.png"><img style="width:1895px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-23_at_9.07.28_AM.png"/></a></figure><ol type="1" id="f19ac259-2211-4079-8b43-a559721a2f86" class="numbered-list" start="3"><li>From this page grab the Space Id and the Content Delivery API - access token and use them for the following .env variables in the project codebase<ul id="26b6a6ee-93ee-46ad-b9c3-cb0c9efb365a" class="bulleted-list"><li style="list-style-type:disc"><code>NUXT_CONTENTFUL_SPACE</code></li></ul><ul id="62305155-e94a-4cd4-9b7a-10acdfe4e494" class="bulleted-list"><li style="list-style-type:disc"><code>NUXT_CONTENTFUL_PUBLIC_ACCESS_TOKEN</code></li></ul><figure id="5540b5c2-9e58-4a8e-9ed2-5e61406cb31d" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.19.23_PM.png"><img style="width:2558px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.19.23_PM.png"/></a></figure></li></ol><ol type="1" id="4ec1f578-9b22-4437-9c4a-95dcf9bdd2f5" class="numbered-list" start="2"><li>That’s it! We’ll use Contentful during the event to manage our product offerings for the e-commerce app.</li></ol><h1 id="9a8d3ab5-cd7a-4d85-a2e1-17560976f854" class="">4. Get Setup with Stripe</h1><ol type="1" id="a781aea3-937f-4c03-abcf-053e60c0a990" class="numbered-list" start="1"><li><a href="https://dashboard.stripe.com/register?utm_source=vuejsforge&amp;utm_medium=event&amp;utm_campaign=sponsorship">Create an account on Stripe.com</a> (and verify your email)</li></ol><figure id="21a78f69-d910-44f2-a8a0-d5f2718e77e4" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.26.03_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.26.03_PM.png"/></a></figure><ol type="1" id="03b14006-151d-4c74-8299-c92ad9ab1ce8" class="numbered-list" start="2"><li>After verifying your email, you’ll be prompted to activate active payments on your account. You can skip this.</li></ol><figure id="4e33e757-f4d8-4ea1-9bce-99ca3c6d0a57" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.27.46_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.27.46_PM.png"/></a></figure><ol type="1" id="66e1ada6-6a97-49e6-9258-04a478d630c4" class="numbered-list" start="3"><li>Under <code>Developers &gt; API Keys</code> you’ll find the secret key for the .env file.<ul id="80b2be3f-a689-4b22-8fd9-722512bd7483" class="bulleted-list"><li style="list-style-type:disc"><code>STRIPE_SECRET</code></li></ul></li></ol><figure id="43805d6a-cbc0-4830-85fe-217bcf3c05be" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.28.54_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.28.54_PM.png"/></a></figure><ol type="1" id="6638a202-4781-444b-a858-eaf64daf41a8" class="numbered-list" start="4"><li>That’s it! We’ll use Stripe during the event to accept payments for the project.</li></ol><h1 id="ac44d052-a8d8-4f29-a999-3b8d6668ea04" class="">5. Get Setup with Big Commerce</h1><ol type="1" id="0a779ff8-bfa9-411c-855b-2e216373b69d" class="numbered-list" start="1"><li><a href="https://www.bigcommerce.com/start-your-trial/?utm_source=vuejsforge&amp;utm_medium=event&amp;utm_campaign=sponsorship">Register for a Free Big Commerce Trial account</a> (and verify your account)</li></ol><figure id="7b862467-83ea-4257-84bb-db814a4b62df" class="image"><a href="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.37.14_PM.png"><img style="width:2560px" src="Preparation%20Guide%20d53a19ebed0f433582e9299e783ee98b/Screen_Shot_2022-08-22_at_9.37.14_PM.png"/></a></figure><ol type="1" id="fef32937-7b60-4d28-84c6-a7d9e1f8ae8d" class="numbered-list" start="2"><li>That’s it! We’ll use Big Commerce during the event to see a more out of the box, fully featured solution for building an online store.</li></ol><h1 id="28b7d834-f560-48d8-b9d8-7c401cf47b8a" class="">6. And… you’re done!</h1><p id="bccdaf56-ffa9-480d-ab95-8f793c69c51b" class="">After getting all the .env variables setup, if you run <code>npm run dev</code> you can see what we’re starting with. There’s some views and styles already built-in but you’ll be filling in the gaps with some of the most exciting functionality!</p><p id="e09f219d-001e-47c0-9a75-2b058dc5086d" class="">Don’t miss it! We kick things off August 30 (3 pm CEST / 9 am EST). We look forward to seeing you there! </p><p id="7291c751-820b-4613-8a34-26d27ad6bbfd" class="">
+</p><p id="da66a07b-12b5-4e64-92ba-8c07565a57e5" class="">📅 <a href="https://www.addevent.com/event/vb14459089">Check your local time and add it to your calendar</a> so you don&#x27;t miss it.</p></div></article></body></html>

@@ -1,0 +1,820 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Exercise 15- User Authentication and Data Scoping</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7d5f43ac-d11f-492b-9384-b0a4a22b3607" class="page sans"><header><h1 class="page-title">Exercise 15- User Authentication and Data Scoping</h1></header><div class="page-body"><ol type="1" id="716b9c0f-70c4-41e5-b89d-79b18cfec40e" class="numbered-list" start="1"><li>Install <code>@8base/auth@^2.6.6</code> package and </li></ol><ol type="1" id="701b076d-62d3-4c03-9dd6-29e63a200549" class="numbered-list" start="2"><li>Create a new subscriber role in the 8base dashboard under <code>AppServices -&gt; Roles</code></li></ol><figure id="09b7ca87-afbe-4526-8c4b-7d21dc0521ae" class="image"><a href="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-06_at_4.33.15_PM.png"><img style="width:1920px" src="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-06_at_4.33.15_PM.png"/></a></figure><ol type="1" id="b4250cec-ae77-4bd2-b689-8eca8055afda" class="numbered-list" start="3"><li>Create a new authentication profile in 8base dashboard under <code>AppServices-&gt;Authentication</code> with the following values:<ol type="a" id="d0721caf-e1eb-4ee5-9b96-7cdc16b74afd" class="numbered-list" start="1"><li><strong>Name</strong>: App Auth</li></ol><ol type="a" id="f93f724c-d746-4172-b08e-065c81315d5d" class="numbered-list" start="2"><li><strong>Type</strong>: 8base Authentication</li></ol><ol type="a" id="9005949d-d648-4b5d-a4cd-01b4070d12fb" class="numbered-list" start="3"><li><strong>Self Signup</strong>: Open to All</li></ol><ol type="a" id="809a47ba-dc5a-4640-b167-164419bfe1a3" class="numbered-list" start="4"><li><strong>Roles</strong>: Subscriber</li></ol></li></ol><figure id="e330e1cb-9cbc-449b-a5f1-9f433f9bcdd0" class="image"><a href="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-06_at_4.34.42_PM.png"><img style="width:1919px" src="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-06_at_4.34.42_PM.png"/></a></figure><ol type="1" id="dbdbb729-b95a-40c2-b435-d0c7a862a6cc" class="numbered-list" start="4"><li>After saving the authentication profile, add the following values to your .env file from the new screen</li></ol><pre id="7f697d4f-e552-46a9-8dd0-d8bc4674fda4" class="code"><code>VITE_AUTH_DOMAIN=
+VITE_AUTH_CLIENT_ID=
+VITE_AUTH_PROFILE_ID=</code></pre><figure id="99ccf793-2418-4214-a6c9-d21da7d3f7ed" class="image"><a href="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-06_at_4.41.52_PM.png"><img style="width:1910px" src="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-06_at_4.41.52_PM.png"/></a></figure><ol type="1" id="0c1ad4dc-69d0-422d-97ed-c5496bd94754" class="numbered-list" start="5"><li>Setup 8base auth client using the <code>@8base/auth</code> package</li></ol><ol type="1" id="e24ffe3f-f585-4a6d-9a09-3ecda710e42f" class="numbered-list" start="6"><li>Create an <code>AuthUserStore</code> to expose methods for interacting with auth client and to store reactive user data</li></ol><ol type="1" id="66381d52-281c-4fb3-9616-3bb796e6cf75" class="numbered-list" start="7"><li>Create a login route that calls the login method from the <code>AuthUserStore</code></li></ol><ol type="1" id="c14092aa-6b54-413c-8ac7-885fb6411c83" class="numbered-list" start="8"><li>Create a logout route that calls the logout method from the <code>AuthUserStore</code></li></ol><ol type="1" id="4a890db8-507b-4e03-926f-64b0a32bc804" class="numbered-list" start="9"><li>Create an <code>auth/callback</code> route to create the user in 8base if they don’t already exist and set the access token to state and local storage</li></ol><ol type="1" id="7fccfc33-8d95-4fb4-aa11-9116e035415c" class="numbered-list" start="10"><li>Add authorization header to apollo client</li></ol><ol type="1" id="34b0e015-36b8-44d5-9ca4-22d0892bd1ea" class="numbered-list" start="11"><li>Change the permissions on Guest Role to be custom filters (filters available in resources below)<figure id="8ff6b91d-b78e-4d46-9acf-87ba501df275" class="image"><a href="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-07_at_3.59.58_PM.png"><img style="width:1916px" src="Exercise%2015-%20User%20Authentication%20and%20Data%20Scoping%207d5f43acd11f492b9384b0a4a22b3607/Screen_Shot_2022-07-07_at_3.59.58_PM.png"/></a></figure></li></ol><ol type="1" id="cf8359dd-0b5a-48bf-b513-5e5b0f225cce" class="numbered-list" start="12"><li>Attach user’s team to the board when creating</li></ol><h2 id="623b0350-d5d6-4ccd-a02e-ce78f9bfa86d" class="">Resources</h2><ul id="369ff4d6-ad0c-4af8-9f52-0b9499f5e008" class="toggle"><li><details open=""><summary>Board Custom Filters</summary><pre id="1e3f8307-f377-46f0-92a8-3a2f26132798" class="code"><code>// Read
+{
+  &quot;team&quot;: {
+    &quot;users&quot;: {
+      &quot;some&quot;: {
+        &quot;id&quot;: {
+          &quot;equals&quot;: &quot;__loggedInUserId&quot;
+        }
+      }
+    }
+  }
+}</code></pre><pre id="e0019d01-a7f4-49c4-9fff-1c01549b32a3" class="code"><code>// Update
+{
+  &quot;team&quot;: {
+    &quot;users&quot;: {
+      &quot;some&quot;: {
+        &quot;id&quot;: {
+          &quot;equals&quot;: &quot;__loggedInUserId&quot;
+        }
+      }
+    }
+  }
+}</code></pre></details></li></ul><ul id="c235b50e-b388-48c5-8157-c16303ef116f" class="toggle"><li><details open=""><summary>Comments Custom Filters</summary><pre id="f1182958-265b-471c-b9d6-057cd7aea211" class="code"><code>// Read
+{
+  &quot;task&quot;: {
+    &quot;board&quot;: {
+      &quot;team&quot;: {
+        &quot;users&quot;: {
+          &quot;some&quot;: {
+            &quot;id&quot;: {
+              &quot;equals&quot;: &quot;__loggedInUserId&quot;
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre><pre id="2ed89b3a-703d-4b91-9d04-cef29d736ac1" class="code"><code>// Write
+{
+  &quot;createdBy&quot;: {
+    &quot;id&quot;: {
+      &quot;equals&quot;: &quot;__loggedInUserId&quot;
+    }
+  }
+}</code></pre></details></li></ul><ul id="58b86b14-4031-477d-82de-a1eb8f67e844" class="toggle"><li><details open=""><summary>Files Custom Filters</summary><pre id="7d877dcb-3929-4fbd-ac17-83598d6ffc37" class="code"><code>// Read
+{
+  &quot;boards_image&quot;: {
+    &quot;some&quot;: {
+      &quot;team&quot;: {
+        &quot;users&quot;: {
+          &quot;some&quot;: {
+            &quot;id&quot;: {
+              &quot;equals&quot;: &quot;__loggedInUserId&quot;
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre><pre id="ac81d1ac-dc1f-4f50-9a95-90e3f0d5545d" class="code"><code>// Write
+{
+  &quot;OR&quot;: [
+    {
+      &quot;createdBy&quot;: {
+        &quot;id&quot;: {
+          &quot;equals&quot;: &quot;__loggedInUserId&quot;
+        }
+      }
+    },
+    {
+      &quot;boards_image&quot;: {
+        &quot;some&quot;: {
+          &quot;team&quot;: {
+            &quot;users&quot;: {
+              &quot;some&quot;: {
+                &quot;id&quot;: {
+                  &quot;equals&quot;: &quot;__loggedInUserId&quot;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}</code></pre></details></li></ul><ul id="c9d9dac7-1b16-4ed8-bd6f-253d8e37f9b1" class="toggle"><li><details open=""><summary>Labels Custom Filters</summary><pre id="6ad84da6-ca1e-482c-a747-e99a8b08be8b" class="code"><code>// Read
+{
+  &quot;board&quot;: {
+    &quot;team&quot;: {
+      &quot;users&quot;: {
+        &quot;some&quot;: {
+          &quot;id&quot;: {
+            &quot;equals&quot;: &quot;__loggedInUserId&quot;
+          }
+        }
+      }
+    }
+  }
+}</code></pre><pre id="d6ee317a-c2a9-4e24-89aa-44053fd18c57" class="code"><code>// Write
+{
+  &quot;board&quot;: {
+    &quot;team&quot;: {
+      &quot;users&quot;: {
+        &quot;some&quot;: {
+          &quot;id&quot;: {
+            &quot;equals&quot;: &quot;__loggedInUserId&quot;
+          }
+        }
+      }
+    }
+  }
+}</code></pre></details></li></ul><ul id="0dc2253e-79a0-43e5-8488-1edaf08a93e8" class="toggle"><li><details open=""><summary>Tasks Custom Filters</summary><pre id="e474f7b3-c9e4-44e7-80d1-a8ea2f5ec981" class="code"><code>// Read
+{
+  &quot;board&quot;: {
+    &quot;team&quot;: {
+      &quot;users&quot;: {
+        &quot;some&quot;: {
+          &quot;id&quot;: {
+            &quot;equals&quot;: &quot;__loggedInUserId&quot;
+          }
+        }
+      }
+    }
+  }
+}</code></pre><pre id="67d868ac-9c90-4540-b56d-5caf2b8fc2a5" class="code"><code>// Write
+{
+  &quot;createdBy&quot;: {
+    &quot;id&quot;: {
+      &quot;equals&quot;: &quot;__loggedInUserId&quot;
+    }
+  }
+}</code></pre></details></li></ul><ul id="f545f0c8-4653-4088-bf3c-174cf546b336" class="toggle"><li><details open=""><summary>Teams Custom Filters</summary><pre id="4f6a1319-3070-4ef7-8b5a-b44b7193883a" class="code"><code>// Read
+{
+  &quot;users&quot;: {
+    &quot;some&quot;: {
+      &quot;id&quot;: {
+        &quot;equals&quot;: &quot;__loggedInUserId&quot;
+      }
+    }
+  }
+}</code></pre><pre id="433ca947-9c6c-4740-8455-0dc15b663ba0" class="code"><code>// Write
+{
+  &quot;users&quot;: {
+    &quot;some&quot;: {
+      &quot;id&quot;: {
+        &quot;equals&quot;: &quot;__loggedInUserId&quot;
+      }
+    }
+  }
+}</code></pre></details></li></ul></div></article></body></html>
